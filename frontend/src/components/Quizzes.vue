@@ -1,18 +1,17 @@
 <script>
-import api from '../services/api.js'; // Importa o Axios configurado
+import api from '../services/api.js'; 
 
 export default {
   data() {
     return {
-      quizzes: [], // Array que vai armazenar os dados do Laravel
+      quizzes: [],
     };
   },
   methods: {
     async getQuizzes() {
       try {
-        // Faz a requisição para a rota Laravel
         const response = await api.get('/quizzes');
-        this.quizzes = response.data; // Salva os quizzes no array
+        this.quizzes = response.data; 
       } catch (error) {
         console.error('Erro ao carregar quizzes:', error);
       }
