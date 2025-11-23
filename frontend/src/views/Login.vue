@@ -1,17 +1,24 @@
 <script setup>
 import { ref } from 'vue';
 import { login } from '../services/auth';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const email = ref('');
 const password = ref('');
 
 async function doLogin() {
-    try {
-        await login(email.value, password.value);
-        console.log('Logado com sucesso!');
-    } catch (error) {
-        console.error(error.response?.data);
-    }
+  try {
+    await login(email.value, password.value);
+
+    console.log('Logado com sucesso!');
+
+    router.push('/dashboard');
+
+  } catch (error) {
+    console.error(error.response?.data);
+  }
 }
 </script>
 
