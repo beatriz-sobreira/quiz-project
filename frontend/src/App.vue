@@ -1,18 +1,10 @@
-<script>
-import Quizzes from './components/Quizzes.vue';
-
-export default {
-  components: {
-    Quizzes,
-  },
-};
-</script>
-
 <template>
-  <div id="app">
-    <Quizzes />
-  </div>
+  <router-view />
 </template>
+
+<script>
+export default {}
+</script>
 
 <style>
 #app {
