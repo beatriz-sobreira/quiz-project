@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import { login } from '../services/auth';
 import { useRouter } from 'vue-router';
+import { login } from '../services/auth';
 
 const router = useRouter();
 
@@ -9,23 +9,21 @@ const email = ref('');
 const password = ref('');
 
 async function doLogin() {
-  try {
-    await login(email.value, password.value);
-
-    console.log('Logado com sucesso!');
-
-    router.push('/dashboard');
-
-  } catch (error) {
-    console.error(error.response?.data);
-  }
+    try {
+        const response = await login(email.value, password.value);
+        console.log('Logado com sucesso!', response.data);
+        router.push('/dashboard'); // redireciona
+    } catch (error) {
+        console.error(error.response?.data);
+        alert("Email ou senha incorretos");
+    }
 }
 </script>
 
 <template>
   <form @submit.prevent="doLogin">
-    <input v-model="email" type="email" placeholder="Email">
-    <input v-model="password" type="password" placeholder="Senha">
+    <input v-model="email" placeholder="Email" type="email" />
+    <input v-model="password" placeholder="Senha" type="password" />
     <button type="submit">Entrar</button>
   </form>
 </template>
